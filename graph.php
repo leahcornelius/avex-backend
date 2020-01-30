@@ -6,7 +6,7 @@ $chart = new Highchart(Highchart::HIGHSTOCK);
 
 $chart->chart->renderTo = "container";
 $chart->rangeSelector->selected = 1;
-$chart->title->text = "Avrio-Bitcoin;
+$chart->title->text = "Avrio-Bitcoin";
 
 $chart->series[] = array(
     'type' => "candlestick",
