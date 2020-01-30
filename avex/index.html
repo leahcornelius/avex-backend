@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Avex Exchange</title>
+        <script src="https://unpkg.com/feather-icons"></script>
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        
+        <meta charset="utf-8" /> 
+        <link rel="stylesheet" href="style.css">
+
+    </head>
+    <body>
+
+        <div class="flex-row" id="avex-app">
+            <div class="sidebar">
+                <div class="sidebar-topper">
+                    <div class="flex-row">
+                        <div class="v-center">
+                            <h3 class="logo">Avex</h3>
+                        </div>
+
+                        <i class="account-icon" data-feather="user"></i>   
+                    </div>
+                </div>
+                <div class="sidebar-body">
+                    <div class="sidebar-item active">
+                        <p><i class="sidebar-item-icon" data-feather="bar-chart"></i>  Dashboard</p>
+                    </div>
+                    <div class="sidebar-item">
+                        <p><i class="sidebar-item-icon" data-feather="shopping-cart"></i>  Orders</p>
+                    </div>
+                    <div class="sidebar-item">
+                        <p><i class="sidebar-item-icon" data-feather="credit-card"></i>  Wallet</p>
+                    </div>
+
+                    <div class="sidebar-item">
+                        <p><i class="sidebar-item-icon" data-feather="sliders"></i>  Settings</p>
+                    </div>
+                </div>
+
+                <a class="logout-button">
+                    Logout
+                </a>
+            </div>
+
+            <div class="order-pane">
+                <div class="order-pane-topper">
+                    <h3>Open orders</h3>
+                    <div class="flex-row">
+                        <a v-if="show_orders == 'buy'" class="order-selector active"><span>{{secondary_currency.toUpperCase()}} <img src="chevron-right.svg" /> {{primary_currency.toUpperCase()}}</span></a>
+                        <a @click="show_orders = 'buy'" v-else class="order-selector"><span>{{secondary_currency.toUpperCase()}} <img src="chevron-right-black.svg" /> {{primary_currency.toUpperCase()}}</span></a>
+                        <a v-if="show_orders == 'sell'" class="order-selector active"><span>{{primary_currency.toUpperCase()}} <img src="chevron-right.svg" /> {{secondary_currency.toUpperCase()}}</span></a>
+                        <a @click="show_orders = 'sell'" v-else class="order-selector"><span>{{primary_currency.toUpperCase()}} <img src="chevron-right-black.svg" /> {{secondary_currency.toUpperCase()}}</span></a>
+                    </div>
+                </div>
+
+                <div class="order-heading">
+                    <div class="flex-row">
+                        <p class="order-detail">Price</p>
+                        <p class="order-detail">Amount</p>
+                        <p class="order-detail">Total</p>
+                    </div>
+                </div>
+
+                <div class="orders-list">
+
+                    <div class="gradient"></div>
+
+                    <div class="scroll" v-if="show_orders == 'buy'">
+                        
+                        <div v-for="order in buy_orders" class="order-prev order-buy">
+                            <div class="flex-row">
+                                <p class="order-detail"><span class="buy-order">{{order.price}}</span> <span class="order-small">{{primary_currency.toUpperCase()}}</span></p>
+                                <p class="order-detail"><span class="buy-order">{{order.amount}}</span> <span class="order-small">{{secondary_currency.toUpperCase()}}</span></p>
+                                <p class="order-detail"><span class="buy-order">{{order.price * order.amount}}</span> <span class="order-small">{{primary_currency.toUpperCase()}}</span></p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="flex-row">
+                    <div class="buy-sell-tab active">
+                        Buy AIO
+                    </div>
+                    <div class="buy-sell-tab">
+                        Sell AIO
+                    </div>
+                </div>
+
+                <div class="order-pane-topper">
+                    <span class="avex-input-label">Amount <span class="right">(AIO)</span></span>
+                    <input class="avex-input" type="text" placeholder="0.00">
+
+                    <span class="avex-input-label">Price (per AIO) <span class="right">(BTC)</span></span>
+                    <input class="avex-input" type="text" placeholder="0.00 (Atleast 1.2 for instant sale)">
+                    <br><br>
+                    <a class="btn">Buy</a>
+                </div>
+            </div>
+
+            <div class="main">
+                <div class="main-padded">
+                    <div class="flex-row">
+                        <div class="v-center">
+                            <p>AIO - BTC</p>
+                            <h2>0.00372 BTC <i class="up-indicator" data-feather="arrow-up"></i><span class="up-percentage">5.2%</span></h2>
+                        </div>
+                        <div class="stat-box" style="margin-left: auto;">
+                            <p>Low &amp; High 24h</p>
+                            <h4>0.00214 - 0.0042</h4>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <script>
+            feather.replace()
+        </script>
+        <script src="main-vue.js"></script>
+    </body>
+</html> 

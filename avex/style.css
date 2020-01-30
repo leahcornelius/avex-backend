@@ -1,0 +1,361 @@
+@import url('https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap');
+
+body{
+    padding: 0px;
+    margin: 0px;
+    font-family: 'Open Sans', sans-serif;
+}
+
+*{
+    box-sizing: border-box;
+}
+
+.flex-row{
+    display: flex;
+}
+
+.sidebar{
+    width: 20vw;
+    position: relative;
+    border-right: 1px solid rgb(229,229,229);
+    height: 100vh;
+}
+
+.sidebar-topper{
+    border-bottom: 1px solid rgb(229,229,229);
+    padding: 25px;
+    background-color: rgb(248,248,248);
+    margin-bottom: 15px;
+}
+
+.sidebar-item{
+    height: 55px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 25px;
+    transition: padding 0.2s;
+    cursor: pointer;
+}
+
+.sidebar-item:hover{
+    padding-left: 28px;
+}
+
+.sidebar-item.active{
+    border-left: 3px solid rgb(94,59,250);
+    padding-left: 22px;
+}
+
+.sidebar-item-icon{
+    height: 20px;
+    position: relative;
+    top: 3px;
+    margin-right: 10px;
+}
+
+.sidebar-item p{
+    font-weight: 300;
+    margin: 0px;
+}
+
+.logo{
+    margin: 0px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: rgb(31,41,78);
+}
+
+.logout-button{
+    height: 45px;
+    width: 100%;
+    text-align: center;
+    display: block;
+    font-size: 16px;
+    padding: 14.5px;
+    background-color: rgb(94,59,250);
+    color: #fff;
+    position: absolute;
+    bottom: 0px;
+    cursor: pointer;
+}
+
+.v-center{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.account-icon{
+    margin-left: auto;
+    font-size: 1em;
+    background-color: rgb(194,197,207);
+    color: #fff;
+    border-radius: 50%;
+    padding: 3px;
+    height: 27px;
+    width: 27px;
+    cursor: pointer;
+}
+
+
+.order-pane{
+    border-right: 1px solid rgb(229,229,229);
+    width: 27vw;
+    overflow-y: scroll;
+    height: 100vh;
+}
+
+.order-pane-topper{
+    padding: 25px;
+    padding-top: 20px;
+    padding-bottom: 15px;
+}
+
+.order-pane h3{
+    margin: 0px;
+}
+
+.order-selector{
+    margin-top: 8px;
+    width: 50%;
+    height: 30px;
+    background-color: rgb(250,250,251);
+    border: 1px solid rgb(244,244,244);
+    border-left: 0px;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 10px;
+    padding-top: 12px;
+    font-weight: 300;
+    text-align: center;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background 0.2s;
+    user-select: none;
+}
+
+.order-selector:hover{
+    background-color: rgb(247,247,247);
+}
+
+.order-selector:first-of-type{
+    border: 1px solid rgb(244,244,244);
+    border-right: 0px;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+}
+
+.order-selector.active{
+    background-color: rgb(94,59,250);
+    color: #fff;
+}
+
+.order-selector span{
+    position: relative;
+    top: -1.5px;
+}
+
+.order-selector img{
+    display: inline;
+    height: 14.5px;
+    position: relative;
+    top: 2px;
+    width: 14.5px;
+    position: relative;
+    top: 2px;
+}
+
+.order-heading{
+    background-color: rgb(248,248,248);
+    font-weight: 300;
+}
+
+.order-prev{
+    user-select: none;
+    border-bottom: 1px solid rgb(229,229,229);
+}
+
+.buy-order{
+    padding: 3px;
+    padding-left: 4.5px;
+    padding-right: 4.5px;
+    color: #fff;
+    border-radius: 2px;
+    background-color: rgb(0,197,169);
+    font-size: 0.9em;
+}
+
+.order-prev p,.order-heading p{
+    margin: 0px;
+}
+
+.order-detail:first-child{
+    border-left: 0px;
+}
+
+.order-detail{
+    width: 33.3%;
+    text-align: center;
+    border-left: 1px solid rgb(229,229,229);
+    padding-top: 7px;
+    padding-bottom: 7px;
+}
+
+span.order-small{
+    font-weight: 300;
+    color: #ccc;
+    font-size: 0.8em;
+}
+
+.buy-sell-tab{
+    cursor: pointer;
+    margin-top: 7px;
+    width: 50%;
+    padding: 12px;
+    text-align: center;
+    font-weight: 700;
+
+    border-top: 1px solid rgb(229,229,229);
+    border-bottom: 2px solid rgb(94,59,250);
+    border-left: 1px solid rgb(229,229,229);
+}
+
+.buy-sell-tab:first-child{
+    border-right: 1px solid rgb(229,229,229);
+    border-left: 0px;
+}
+
+.buy-sell-tab:not(.active){
+    background-color: rgb(246,246,246);
+    border-right: 0px;
+    border-left: 0px;
+    border-bottom: 1px solid rgb(229,229,229);
+    transition: background-color 0.2s;
+}
+
+.buy-sell-tab:not(.active):hover{
+    background-color: rgb(246,246,246,0.7);
+}
+
+.orders-list{
+    max-height: 45vh;
+    position: relative;
+}
+
+.scroll{
+    height: 45vh;
+    overflow-y: scroll;
+}
+
+.orders-list .gradient{
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+    height: 50px;
+    background-image: linear-gradient(rgba(255,255,255,0), rgba(255,255,255,1));
+}
+
+.avex-input{
+    height: 35px;
+    width: 100%;
+    padding-left: 15px;
+    padding-right: 15px;
+    font-size: 14px;
+    background-color: rgb(225,225,225,0.5);
+    border: 0px;
+    border-radius: 2px;
+    margin-bottom: 10px;
+}
+
+.avex-input-label{
+    padding: 2px;
+    padding-bottom: 4px;
+    display: block;
+    font-size: 12px;
+    font-weight: 700;
+    color: rgb(154,159,179);
+}
+
+.avex-input-label .right{
+    float: right;
+    font-weight: 300;
+}
+
+.btn{
+    height: 30px;
+    background-color: rgb(94,59,250);
+    color: #fff;
+    padding: 10px;
+    padding-left: 25px;
+    padding-right: 25px;
+    border-radius: 3px;
+    box-shadow: rgba(15, 15, 15, 0.1) 0px 1px 2px;
+    transition: background-color 0.2s;
+    cursor: pointer;
+}
+
+.btn:hover{
+    background-color: rgb(94,59,250,0.9);
+}
+
+.main{
+    width: 53vw;
+    height: 100vh;
+    overflow-y: scroll;
+}
+
+.main-padded{
+    padding: 25px;
+}
+
+.main h3, .main h2, .main h1,.main p, .main h4{
+    margin: 0px;
+}
+
+.main p{
+    color: rgb(175 178 191);
+    margin-bottom: 5px;
+}
+
+.stat-box{
+    border: 1px solid rgb(240,240,240);
+    border-radius: 4px;
+    padding: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.stat-box p{
+    font-weight: 300;
+    font-size: 0.8em;
+}
+
+.up-indicator{
+    background-color: rgb(0,197,169);
+    color: #fff;
+    border-radius: 3px;
+    height: 16px;
+    width: 16px;
+    padding: 1.5px;
+}
+
+.up-percentage{
+    color: rgb(0,197,169);
+    font-size: 13px;
+    font-weight: 300;
+    margin-left: 3px;
+    position: relative;
+    top: -2.5px;
+}
+
+#chartdiv{
+    width: 100%;
+    height: 100%;
+}
