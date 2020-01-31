@@ -24,15 +24,15 @@
 			TradingView.onready(function()
 			{
 				var widget = window.tvWidget = new TradingView.widget({
-					// debug: true, // uncomment this line to see Library errors and warnings in the console
-					fullscreen: true,
-					symbol: 'AAPL',
+					debug: true, // uncomment this line to see Library errors and warnings in the console
+					fullscreen: false,
+					symbol: 'AIO',
 					interval: 'D',
 					container_id: "tv_chart_container",
 
 					//	BEWARE: no trailing slash is expected in feed URL
 					datafeed: new Datafeeds.UDFCompatibleDatafeed("https://demo_feed.tradingview.com"),
-					library_path: "charting_library/",
+					library_path: "./",
 					locale: getParameterByName('lang') || "en",
 
 					disabled_features: ["use_localstorage_for_settings"],
