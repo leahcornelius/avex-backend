@@ -1,4 +1,4 @@
-functionn getParameterByName(name) {
+			functionn getParameterByName(name) {
 				name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
 				var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
 					results = regex.exec(location.search);
