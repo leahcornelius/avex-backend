@@ -1,20 +1,4 @@
-<!DOCTYPE HTML>
-<html>
-	<head>
-
-		<title>TradingView Charting Library demo</title>
-
-		<!-- Fix for iOS Safari zooming bug -->
-		<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0">
-		<meta http-equiv="X-UA-Compatible" content="IE=Edge">
-
-		<script type="text/javascript" src="charting_library/charting_library.min.js"></script>
-		<script type="text/javascript" src="datafeeds/udf/dist/polyfills.js"></script>
-		<script type="text/javascript" src="datafeeds/udf/dist/bundle.js"></script>
-
-		<script type="text/javascript">
-
-			function getParameterByName(name) {
+functionn getParameterByName(name) {
 				name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
 				var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
 					results = regex.exec(location.search);
@@ -44,13 +28,3 @@
 					theme: getParameterByName('theme'),
 				});
 			});
-
-		</script>
-
-	</head>
-
-	<body style="margin:0px;">
-		<div id="tv_chart_container"></div>
-	</body>
-
-</html>
