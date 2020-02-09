@@ -5,6 +5,7 @@ function get_wallet(userId,currency) //Balance, Locked funds, Deposit address {
         1 => 0.032, // locked bal
         2 => "Aio88999cccf8a312b413e2e49d91ce91653f5f4be32159634818676afb78dc647" // deposit address
     ]
+    return wallet;
 }
     
 function lock_funds(userId,currency,direction,amount) //Direction being '+' or '-' {
