@@ -1,5 +1,5 @@
 <?php
-require_once '/API/jsonRPCClient.php';
+require_once '/api/jsonRPCClient.php';
 $bitcoin = new jsonRPCClient('http://username:password@127.0.0.1:8332/');
 function get_wallet(userId,currency) { //Balance, Deposit address 
     if ($currency == "BTC") {
