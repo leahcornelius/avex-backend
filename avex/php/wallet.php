@@ -18,8 +18,15 @@ function get_wallet(userId,currency) { //Balance, Deposit address
             "deposit_address" => $address
          )
     } else if ($currency == "AIO") {
+        $myfile = fopen("avrio-wallets.dat", "r") or die("Unable to open file!");
+        while (fgets($myfile) != $userId) {
+        }
+        $address = fgets($myFile);
+        $response = $avrio->getBalance($address);
+        $obj = json_decode($response);
+        fclose($myfile);
         $wallet = array(
-            "balance" => 104.3200,
+            "balance" => obj->result->availableBalance,
             "deposit_address" => "Aio88999cccf8a312b413e2e49d91ce91653f5f4be32159634818676afb78dc647"
         )
     }
