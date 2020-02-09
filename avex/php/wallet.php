@@ -1,5 +1,14 @@
 <?php
 require_once '/api/jsonRPCClient.php';
+use TurtleCoin\TurtleService;
+
+$config = [
+    'rpcHost'     => 'http://localhost',
+    'rpcPort'     => 1234,
+    'rpcPassword' => 'password',
+];
+
+$avrio = new TurtleService($config);
 $bitcoin = new jsonRPCClient('http://username:password@127.0.0.1:8332/');
 function get_wallet(userId,currency) { //Balance, Deposit address 
     if ($currency == "BTC") {
