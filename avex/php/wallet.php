@@ -27,7 +27,7 @@ function get_wallet(userId,currency) { //Balance, Deposit address
         fclose($myfile);
         $wallet = array(
             "balance" => obj->result->availableBalance,
-            "deposit_address" => "Aio88999cccf8a312b413e2e49d91ce91653f5f4be32159634818676afb78dc647"
+            "deposit_address" => $address
         )
     }
     return wallet;
@@ -37,15 +37,32 @@ function withdraw(userId,currency,amount,wallet_to,fee) {
     if (strtoupper($currency) ==  "BTC") {
         return $bitcoin->sendfrom($userId,$receiver,$amount,3);  
     } else if (strtoupper($currency) == "AIO") {
-        return ; // todo
+        $wallet = get_wallet(userId, "AIO");
+        $anonymity = 0;
+        $transfers = [
+            ["address" => $wallet_to, "amount"  => amount],
+        ];
+
+        $response = $avrio->sendTransaction(
+            0, $transfers, $fee, null, null, null, null, null
+        );
+        $json_parsed = json_decode(response);
+        return json_parsed->result->transactionHash;
     }
 }
     
 function create_wallets(new_userId) {
-    return $bitcoin->getaccountaddress($new_userId);
-}
-
-function transfer_funds(userIdFrom,userIdTo,currency,amount) {
-    return 1;
+    $spendSecretKey = null;
+    $spendPublicKey = null;
+    $response = $avrio->createAddress($spendSecretKey, $spendPublicKey);
+    $obj = json_decode(response);
+    $new_aio_address = onj->result->address
+    $fp = fopen('avrio-wallets.dat', 'a');//opens file in append mode.
+    fwrite($fp, $new_userId);
+    fwrite($fp, $new_aio_address);
+    fclose($fp);
+    return array (
+        "bitcoin" => $bitcoin->getaccountaddress($new_userId),
+        "avrio" => $new_aio_address
 }
 ?>
