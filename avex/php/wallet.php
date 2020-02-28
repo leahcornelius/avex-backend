@@ -13,8 +13,10 @@ $bitcoin = new jsonRPCClient('http://username:password@127.0.0.1:8332/');
 function get_wallet(userId,currency) { //Balance, Deposit address 
     if ($currency == "BTC") {
         $address=$bitcoin->getaccountaddress($userId);
+        $db_bal = bal_get(userId, currency);
+        bal_edit($userId,$currency,$bitcoin->getbalance($userId), "keep");
         $wallet = array(
-            "balance" => bitcoind->getbalance($userId),
+            "balance" => $db_bal->funds + $db_bal->additionalFunds,
             "deposit_address" => $address
          )
     } else if ($currency == "AIO") {
@@ -25,8 +27,10 @@ function get_wallet(userId,currency) { //Balance, Deposit address
         $response = $avrio->getBalance($address);
         $obj = json_decode($response);
         fclose($myfile);
+        bal_edit($userId,$currency,obj->result->availableBalance, "keep");
+        $db_bal = bal_get(userId, currency);
         $wallet = array(
-            "balance" => obj->result->availableBalance,
+            "balance" => $db_bal->funds + $db_bal->additionalFunds,
             "deposit_address" => $address
         )
     }
@@ -65,4 +69,23 @@ function create_wallets(new_userId) {
         "bitcoin" => $bitcoin->getaccountaddress($new_userId),
         "avrio" => $new_aio_address
 }
+
+function transfer(userId, currency, amount) {
+    if ($currency == "BTC") {
+        $address=$bitcoin->getaccountaddress($userId);
+        $balance = $bitcoind->getbalance($userId) + $db_bal->additionalFunds;
+        bal_edit($userId,$currency,$balance, $amount);
+    } else if ($currency == "AIO") {
+        $myfile = fopen("avrio-wallets.dat", "r") or die("Unable to open file!");
+        while (fgets($myfile) != $userId) {
+        }
+        $address = fgets($myFile);
+        $response = $avrio->getBalance($address);
+        $obj = json_decode($response);
+        fclose($myfile);
+        $balance = obj->result->availableBalance + $db_bal->additionalFunds;
+         bal_edit($userId,$currency,$balance, $amount);
+    }
+}
+        
 ?>
