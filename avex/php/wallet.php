@@ -70,11 +70,13 @@ function create_wallets(new_userId) {
         "avrio" => $new_aio_address
 }
 
-function transfer(userId, currency, amount) {
+function transfer(userId, toUserId, currency, amount) {
     if ($currency == "BTC") {
-        $address=$bitcoin->getaccountaddress($userId);
         $balance = $bitcoind->getbalance($userId) + $db_bal->additionalFunds;
         bal_edit($userId,$currency,$balance, $amount);
+        //
+        $balance_to = $bitcoind->getbalance($toUserId);
+        bal_edit($toUserId,$currency,$balance_to, abs($amount));
     } else if ($currency == "AIO") {
         $myfile = fopen("avrio-wallets.dat", "r") or die("Unable to open file!");
         while (fgets($myfile) != $userId) {
@@ -83,8 +85,18 @@ function transfer(userId, currency, amount) {
         $response = $avrio->getBalance($address);
         $obj = json_decode($response);
         fclose($myfile);
-        $balance = obj->result->availableBalance + $db_bal->additionalFunds;
+        $balance = obj->result->availableBalance;
          bal_edit($userId,$currency,$balance, $amount);
+        //
+        $myfile_to = fopen("avrio-wallets.dat", "r") or die("Unable to open file!");
+        while (fgets($myfile_to) != $toUserId) {
+        }
+        $address_to = fgets($myFile);
+        $response_to = $avrio->getBalance($address);
+        $obj_to = json_decode($response_to);
+        fclose($myfile_to);
+        $balance_to = obj->result->availableBalance;
+         bal_edit($toUserId,$currency,$balance_to, abs($amount));
     }
 }
         
