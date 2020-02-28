@@ -37,7 +37,7 @@ function get_wallet(userId,currency) { //Balance, Deposit address
     return wallet;
 }
     
-function withdraw(userId,currency,amount,wallet_to,fee) {
+function withdraw($userId,$currency,$amount,$wallet_to,$fee) {
     if (strtoupper($currency) ==  "BTC") {
         return $bitcoin->sendfrom($userId,$receiver,$amount,3);  
     } else if (strtoupper($currency) == "AIO") {
@@ -55,7 +55,7 @@ function withdraw(userId,currency,amount,wallet_to,fee) {
     }
 }
     
-function create_wallets(new_userId) {
+function create_wallets($new_userId) {
     $spendSecretKey = null;
     $spendPublicKey = null;
     $response = $avrio->createAddress($spendSecretKey, $spendPublicKey);
@@ -70,7 +70,7 @@ function create_wallets(new_userId) {
         "avrio" => $new_aio_address
 }
 
-function transfer(userId, toUserId, currency, amount) {
+function transfer($userId, $toUserId, $currency, $amount) {
     if ($currency == "BTC") {
         $balance = $bitcoind->getbalance($userId) + $db_bal->additionalFunds;
         bal_edit($userId,$currency,$balance, $amount);
