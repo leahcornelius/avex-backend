@@ -51,7 +51,11 @@ function withdraw(userId,currency,amount,wallet_to,fee) {
             0, $transfers, $fee, null, null, null, null, null
         );
         $json_parsed = json_decode(response);
-        return json_parsed->result->transactionHash;
+        if isset(json_parsed->result->transactionHash) {
+            return json_decode(' { "txn_hash" : "'.json_parsed->result->transactionHash'" }';
+        } else {
+            return json_decode(' { "error" : "There was an error while sending your transaction and it did not send. Please try again", "error_code": 0 }';
+        }
     }
 }
     
@@ -67,7 +71,8 @@ function create_wallets(new_userId) {
     fclose($fp);
     return array (
         "bitcoin" => $bitcoin->getaccountaddress($new_userId),
-        "avrio" => $new_aio_address
+        "avrio" => $new_aio_address,
+        );
 }
 
 function transfer(userId, toUserId, currency, amount) {
